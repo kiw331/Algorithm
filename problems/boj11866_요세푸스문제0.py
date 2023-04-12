@@ -7,7 +7,9 @@ p = k -1 # 다음 차례 (table[2]는 3번째 사람)
 for _ in range(n):  #사람 수 만큼 반복
     res.append(table[p]) 
     table[p] = -1   #죽은? 사람은 -1로 
-        
+    
+    if len(res)==n:     break
+    
     for _ in range(k):
         p = (p+1) % n # 원형 테이블이니까 마지막 사람을 넘어서면 다시 처음으로
         
