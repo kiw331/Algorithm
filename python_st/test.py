@@ -1,7 +1,17 @@
-import sys
+from sys import stdin
+n = int(stdin.readline())
 
-a,b,c,d = map(int, input().split())
-print(min([a,b,abs(c-a),abs(d-b)]))
+for _ in range(n):
+    l = int(stdin.readline())
+    t = stdin.readline()
+    
+    s = set()
+    for i in range(l-1):
+        s.add(t[i:i+2])
+        
+    print(len(s))
+        
+    
         
         
     
