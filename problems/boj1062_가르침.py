@@ -12,7 +12,6 @@ if k>=5: # 배우는 글자가 5개 미만이면 어떤 단어도 읽지 못함
         res = n
 
     else: # 읽을 수 있는 글자 조합 별 읽을 수 있는 단어 개수를 구함
-        res = 0
         for com in combinations(all, k-5):
             case = 0
             com = set(com)
