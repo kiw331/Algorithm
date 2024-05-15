@@ -1,31 +1,26 @@
 from math import floor
 from sys import stdin
-import time
 
 k, n =  map(int, stdin.readline().split())
 l = [int(stdin.readline()) for _ in range(k)]
 
 m = floor(sum(l)/n) #k의 최대값
 
-s, e = 1,m+1 #초기 탐색범위
+s, e = 1,m #초기 탐색범위
 p = (e+s)//2 #현재 탐색값
 
 # 랜선길이가 p일때 랜선개수
 def getcount(p):
-    print(p,"호출")
     return sum(map(lambda x: x//p, l))
 
     
 # 이진탐색으로 최적의 p(랜선 길이) 찾기
 while(1):   
-    time.sleep(1)
     count = getcount(p)
-    print(s,e,p,count)
     
     # 랜선이 길다. -> 아래 범위 탐색
     if count < n:
-        print("길다")
-        e = p
+        e = p-1
         p = (e+s)//2
         
     # 랜선이 짧다. -> 위 범위 탐색
@@ -36,8 +31,7 @@ while(1):
             break
         
         # 정답이 아니면 윗범위 탐색
-        print("짧다")
-        s = p
+        s = p+1
         p = (e+s)//2
         
     
