@@ -10,9 +10,6 @@ while 1: #엔터 한번 더처야 입력됨
 
 
 
-
-    
-
 print(v,m)
 print(xs, ys)
 print(xt, yt)
