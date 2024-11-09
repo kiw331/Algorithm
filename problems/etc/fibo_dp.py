@@ -1,4 +1,4 @@
-# n번째 피보나치 수
+# n번째 피보나치 수 - 탑다운
 n = int(input())
 
 f = [0 for _ in range(100)]   
