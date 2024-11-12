@@ -1,43 +1,58 @@
 
 import time
-s = time.time()  # 시작 시간 기록
 
 import random
 from sys import stdin
 from itertools import combinations as comb
 
 
-n, k = map(int, stdin.readline().split())
-words = []
-for _ in range(n):
-    w = stdin.readline().rstrip()[4:-4]  #처음4 마지막4 문자는 항상 같음
-    w = set(w) - {'a','n','t','i','c'}   # antic 다섯 글자는 항상 배움
-    words.append(w)
+def sieve(limit):
+    is_prime = [True] * (limit + 1)
+    is_prime[0] = is_prime[1] = False
+    for i in range(2, int(limit ** 0.5) + 1):
+        if is_prime[i]:
+            for j in range(i * i, limit + 1, i):
+                is_prime[j] = False
+    return [i for i, prime in enumerate(is_prime) if prime]
+
+primes = sieve(1000)
+prime_set = set(primes)
+
+def generate_graph(n):
+    if n < 5:
+        return -1
     
-res = 0
-if k >= 5:  #k가 5미만이면 배울 수 있는 단어는 없음.
+    edges = []
+    for i in range(1, n + 1):
+        edges.append((i, (i % n) + 1))
     
-    # 모든 집합 합하기
-    all = set().union(*words)
+    m = n
+    
+    if m not in prime_set:
+        edges.append((1, 3))
+        m += 1
+    
+    if m in prime_set:
+        return m, edges
+    else:
+        return -1
 
-    #가르칠 수 있는 문자 조합 lc (미리 기본 5문자 뺐으니까 조합 길이는 k-5)
-    #lc = comb(all, k-5)
+T = int(input().strip())
+results = []
+s = time.time()  # 시작 시간 기록
 
+for _ in range(T):
+    n = int(input().strip())
+    result = generate_graph(n)
+    if result == -1:
+        results.append("-1")
+    else:
+        m, edges = result
+        results.append(f"{m}")
+        results.extend(f"{u} {v}" for u, v in edges)
 
-    # 각 조합별 가르칠 수 있는 단어 개수 구하고 최대값이면 갱신
-    for c in lc:
-        tmp = 0
-        for w in words:
-            if w <= set(c):  #단어가 현 조합의 부분집합이다 = 읽을 수 있는 단어
-                tmp +=1
-        
-        if tmp > res:
-            res = tmp
-            
-        if tmp > n: #시간 초과 방지
-            break
+print("\n".join(results))
 
-print(res)
 
 e = time.time()  # 종료 시간 기록`
 print("실행시간: ",round(e-s,3),'s', sep='')

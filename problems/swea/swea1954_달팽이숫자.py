@@ -8,7 +8,7 @@ l  = [int(input()) for _ in range(a)]
 dir = ((0, 1), (1, 0), (0, -1), (-1, 0))
 
 def next_dir(didx):
-    didx = (didx+1) % 4
+    didx = (didx+1) % 4 #원형큐 처럼 3번째인덱스 다음 0번째로
     return didx, dir[didx][0], dir[didx][1]
 
 def printres(n):
