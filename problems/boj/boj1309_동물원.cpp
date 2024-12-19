@@ -13,7 +13,8 @@ int main() {
     ans[1]=3;   ans[2]=7;
     cin >> N;
 
-    for(int i=3; i<=N; i++) ans[i] = (2*ans[i-1] + ans[i-2])%9901;
+    for(int i=3; i<=N; i++) 
+        ans[i] = (2*ans[i-1] + ans[i-2])%9901;
     
     cout << ans[N];
     return 0;

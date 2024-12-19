@@ -1,3 +1,5 @@
+# 18799. 평균의 평균 D4
+
 from itertools import combinations
 
 

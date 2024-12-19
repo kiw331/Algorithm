@@ -1,4 +1,4 @@
-# 20021. 소수 그래프 D4
+# 20021. 소수 그래프 D4 
 
 from bisect import bisect_left, bisect_right
 
