@@ -1,0 +1,44 @@
+// boj14626
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string pin;
+    cin >> pin; 
+    // cout << "입력값: " << pin << endl;
+    
+    int res; // 정답 (*)
+    int s = pin[12] - '0';  // 숫자합 계산할 임시값
+    int tweight;    // res에 곱해져야하는 가중치
+    
+    for (int i = 0; i < 12; i++) {
+        int weight = 1;  // pin[i]에 곱해지는 가중치 (짝수1, 홀수3)
+        if (i % 2 == 1)
+            weight *= 3;
+            
+        if (pin[i] == '*') {
+            tweight = weight;
+            continue;
+        }
+        
+        s += (pin[i] - '0') * weight;
+    }    
+    
+    
+    //res * tweight + s 가 10으로 나누어 떨어지도록하는 res를 구하기
+
+    
+    int need = 10 - (s % 10); // 10으로 나눠떨어지기 위해 더해야하는 수
+    
+    if (tweight==1) 
+        res = need;
+    
+    else    
+        res = (7 * need) % 10;
+        
+        
+    cout << res ;
+    return 0;
+}
